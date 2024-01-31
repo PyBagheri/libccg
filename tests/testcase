@@ -4,4 +4,4 @@ TESTS_ROOT=$(readlink -f $(dirname $0))
 CCGLIB_ROOT=$(readlink -f $TESTS_ROOT/..)
 
 filename=$(basename $1)
-cc -I$CCGLIB_ROOT $1 $CCGLIB_ROOT/cvector/cvector.c $TESTS_ROOT/tools/term.c -lm -o "${filename%.*}".out
+cc -I$CCGLIB_ROOT $1 $CCGLIB_ROOT/cvector/cvector.c $CCGLIB_ROOT/screen/screen.c -lm -o "${filename%.*}".out

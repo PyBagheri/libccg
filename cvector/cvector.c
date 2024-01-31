@@ -178,7 +178,7 @@ Vector v_3d_to_2d(Vector v, Vector plane_normal, Vector plane_origin, num xy_ang
     v = v_diff(v, v_project(v, plane_normal));
 
     // horizontal here means in the xy-plane.
-    Vector horiz_x = v2d(-plane_normal.vals[1], plane_normal.vals[0]);
+    Vector horiz_x = v2d(plane_normal.vals[1], -plane_normal.vals[0]);
     Vector horiz_x_unit;
     if (horiz_x.vals[0] == 0.0 && horiz_x.vals[1] == 0.0) {
         horiz_x_unit = v2d(1, 0);
@@ -191,9 +191,6 @@ Vector v_3d_to_2d(Vector v, Vector plane_normal, Vector plane_origin, num xy_ang
                              sin(xy_angle));
 
     Vector y_plus_unit = v_cross(x_plus_unit, plane_normal);
-
-    printf("%f %f %f\n", x_plus_unit.vals[0],  x_plus_unit.vals[1], x_plus_unit.vals[2]);
-    printf("%f %f %f\n", y_plus_unit.vals[0],  y_plus_unit.vals[1], y_plus_unit.vals[2]);
 
     return v2d(v_project_value(v, x_plus_unit), v_project_value(v, y_plus_unit));
 }

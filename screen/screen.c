@@ -1,9 +1,9 @@
-#include <tests/tools/term.h>
+#include <screen/screen.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 
-TScreen init_tscreen(int width, int height, char empty_fill_char) {
+TScreen tscreen_init(int width, int height, char empty_fill_char) {
     char (*screen_chars)[width] = malloc(sizeof(char) * width * height);
 
     for (int j = 0; j < height; j++) {
@@ -18,7 +18,7 @@ TScreen init_tscreen(int width, int height, char empty_fill_char) {
 }
 
 
-void dealloc_tscreen(TScreen screen) {
+void tscreen_dealloc(TScreen screen) {
     free((char (*)[screen.width])screen.screen_chars);
 }
 
@@ -37,9 +37,7 @@ void tscreen_print(TScreen screen) {
 }
 
 
-// put char in the 'data'.
-// "put screen char"
-int putschar(TScreen screen, int x, int y, char c) {
+int tscreen_putchar(TScreen screen, int x, int y, char c) {
     char (*s)[screen.width] = (char (*)[screen.width])screen.screen_chars;
 
     s[screen.height / 2 - y][screen.width / 2 + x] = c;

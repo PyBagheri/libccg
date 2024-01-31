@@ -1,9 +1,9 @@
-#include <screen/screen.h>
+#include <screen/charscreen.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 
-TScreen tscreen_init(int width, int height, char empty_fill_char) {
+CharScreen cscreen_init(int width, int height, Character empty_fill_char) {
     char (*screen_chars)[width] = malloc(sizeof(char) * width * height);
 
     for (int j = 0; j < height; j++) {
@@ -12,18 +12,18 @@ TScreen tscreen_init(int width, int height, char empty_fill_char) {
         }
     }
 
-    TScreen screen = { .height=height, .width=width, .screen_chars=(char*)screen_chars };
+    CharScreen charscreen = { .height=height, .width=width, .screen_chars=(char*)screen_chars };
 
-    return screen;
+    return charscreen;
 }
 
 
-void tscreen_dealloc(TScreen screen) {
+void cscreen_dealloc(CharScreen screen) {
     free((char (*)[screen.width])screen.screen_chars);
 }
 
 
-void tscreen_print(TScreen screen) {
+void cscreen_print(CharScreen screen) {
     // explicit casting to suppress warnings
     char (*s)[screen.width] = (char (*)[screen.width])screen.screen_chars;
 
@@ -36,8 +36,13 @@ void tscreen_print(TScreen screen) {
     }
 }
 
+// TODO
+// void cscreen_trender(CharScreen screen) {
 
-int tscreen_putchar(TScreen screen, int x, int y, char c) {
+// }
+
+
+int cscreen_putchar(CharScreen screen, int x, int y, char c) {
     char (*s)[screen.width] = (char (*)[screen.width])screen.screen_chars;
 
     s[screen.height / 2 - y][screen.width / 2 + x] = c;

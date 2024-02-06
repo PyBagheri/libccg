@@ -22,6 +22,18 @@ void pscreen_dealloc(PixelScreen screen) {
     free((Pixel (*)[screen.width])screen.pixels);
 }
 
+
+void pscreen_fill(PixelScreen screen, Pixel empty_fill_pixel) {
+    Pixel (*pixels)[screen.width] = (Pixel (*)[screen.width])screen.pixels;
+
+    for (int j = 0; j < screen.height; j++) {
+        for (int i = 0; i < screen.width; i++) {
+            pixels[j][i] = empty_fill_pixel;
+        }
+    }
+}
+
+
 void print_terminal_char(Pixel upper, Pixel lower) {
     printf("\033[38;2;%d;%d;%dm\033[48;2;%d;%d;%dm▀", upper.r, upper.g, upper.b, lower.r, lower.g, lower.b);
 }
@@ -42,6 +54,7 @@ void pscreen_print(PixelScreen screen) {
         printf("\033[0m\n");
     }
 }
+
 
 // TODO
 // void pscreen_trender(PixelScreen screen) {

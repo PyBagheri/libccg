@@ -16,6 +16,8 @@ PixelScreen pscreen_init(int width, int height, Pixel empty_fill_pixel);
 
 void pscreen_dealloc(PixelScreen screen);
 
+void pscreen_fill(PixelScreen screen, Pixel empty_fill_pixel);
+
 Pixel* pscreen_trender(PixelScreen screen);
 void pscreen_print(PixelScreen screen);
 

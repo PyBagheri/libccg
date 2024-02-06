@@ -10,11 +10,13 @@
 #define FILL_CHAR 'W'
 #define CENTER_CHAR '+'
 
+#define ZOOM_FACTOR 50.0
+
 #define PI 3.141592
 
 
-Vector project_point(Vector p, Vector camera_loc, double camera_xy_angle);
-void square(double side, Vector camera_loc, double camera_xy_angle);
+Vector project_point(Vector p, Vector camera_plane_normal, Vector camera_loc, double camera_xy_angle, double zoom_factor);
+void square(double side, Vector camera_plane_normal, Vector camera_loc, double camera_xy_angle);
 
 CharScreen screen;
 
@@ -23,9 +25,11 @@ int main(void) {
     // prepare the screen
     screen = cscreen_init(WIDTH, HEIGHT, EMPTY_FILL_CHAR);
 
+    Vector camera_plane_normal = v_unitize(v3d(-5, 0, -5));
     Vector camera_loc = v3d(5, 0, 5);
     double camera_xy_angle = .1;  // in radians
-    square(2, camera_loc, camera_xy_angle);
+    
+    square(2, camera_plane_normal, camera_loc, camera_xy_angle);
 
     cscreen_print(screen);
 
@@ -36,16 +40,16 @@ int main(void) {
 }
 
 
-void square(double side, Vector camera_loc, double camera_xy_angle) {
+void square(double side, Vector camera_plane_normal, Vector camera_loc, double camera_xy_angle) {
     Vector p1 = v3d(-side, side, 0);
     Vector p2 = v3d(side, -side, 0);
     Vector p3 = v3d(-side, -side, 0);
     Vector p4 = v3d(side, side, 0);
 
-    Vector v1 = project_point(p1, camera_loc, camera_xy_angle);
-    Vector v2 = project_point(p2, camera_loc, camera_xy_angle);
-    Vector v3 = project_point(p3, camera_loc, camera_xy_angle);
-    Vector v4 = project_point(p4, camera_loc, camera_xy_angle);
+    Vector v1 = project_point(p1, camera_plane_normal, camera_loc, camera_xy_angle, ZOOM_FACTOR);
+    Vector v2 = project_point(p2, camera_plane_normal, camera_loc, camera_xy_angle, ZOOM_FACTOR);
+    Vector v3 = project_point(p3, camera_plane_normal, camera_loc, camera_xy_angle, ZOOM_FACTOR);
+    Vector v4 = project_point(p4, camera_plane_normal, camera_loc, camera_xy_angle, ZOOM_FACTOR);
 
     // to show the center of the 'screen'.
     cscreen_putchar(screen, 0, 0, CENTER_CHAR);
@@ -57,17 +61,15 @@ void square(double side, Vector camera_loc, double camera_xy_angle) {
 }
 
 
-// camera will always look at the origin. If you want to change
-// this behavior, you should change the 'plane_origin' parameter
-// to something else (currently it's parallel to 'plane_normal').
-Vector project_point(Vector p, Vector camera_loc, double camera_xy_angle) {
-    double zoom_factor = 50.0;
+Vector project_point(Vector p, Vector camera_plane_normal, Vector camera_loc, double camera_xy_angle, double zoom_factor) {
+    // first move the vector relative to the camera,
+    // then project it on the camera's plane normal.
+    Vector proj = v_project(v_diff(p, camera_loc), camera_plane_normal);
 
-    Vector plane_normal = v_neg(v_unitize(camera_loc));
-    Vector proj = v_project(p, camera_loc);
+    // the farther the vector is relative to the normal,
+    // the less its 2D magnitude will be.
+    double zoom_coeff = zoom_factor / v_abs(proj);
 
-    Vector proj_distance_vector = v_diff(camera_loc, proj);
-    double zoom_coeff = zoom_factor / v_abs(proj_distance_vector);
-
-    return v_const_prod(v_3d_to_2d(p, plane_normal, camera_loc, camera_xy_angle), zoom_coeff);
+    return v_const_prod(v_project_on_plane(p, camera_plane_normal, camera_loc, camera_xy_angle), zoom_coeff);
 }
+

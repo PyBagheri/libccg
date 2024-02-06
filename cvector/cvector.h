@@ -48,6 +48,6 @@ Vector v_project(Vector v1, Vector v2);
 
 Vector v_cross(Vector v1, Vector v2);
 
-Vector v_3d_to_2d(Vector v, Vector plane_normal, Vector plane_origin, num xy_angle);
+Vector v_project_on_plane(Vector v, Vector plane_normal, Vector plane_origin, num xy_angle);
 
 #endif // CVECTOR_H_

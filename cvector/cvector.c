@@ -173,7 +173,11 @@ Vector v_cross(Vector v1, Vector v2) {
 // The plane normal vector must be toward the inside of
 // the plane. This is crucial to not take the -x axis as
 // the +x.
-Vector v_3d_to_2d(Vector v, Vector plane_normal, Vector plane_origin, num xy_angle) {
+Vector v_project_on_plane(Vector v, Vector plane_normal, Vector plane_origin, num xy_angle) {
+    // move the vector relative to the
+    // hypothetical plane origin.
+    v = v_diff(v, plane_origin);
+
     // project v on the plane.
     v = v_diff(v, v_project(v, plane_normal));
 

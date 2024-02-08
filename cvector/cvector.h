@@ -1,5 +1,5 @@
-#ifndef CVECTOR_H_
-#define CVECTOR_H_
+#ifndef CVECTOR_H
+#define CVECTOR_H
 
 typedef double num;
 
@@ -50,4 +50,4 @@ Vector v_cross(Vector v1, Vector v2);
 
 Vector v_project_on_plane(Vector v, Vector plane_normal, Vector plane_origin, num xy_angle);
 
-#endif // CVECTOR_H_
+#endif // CVECTOR_H

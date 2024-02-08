@@ -1,5 +1,5 @@
-#ifndef PIXELSCREEN_H_
-#define PIXELSCREEN_H_
+#ifndef PIXELSCREEN_H
+#define PIXELSCREEN_H
 
 typedef struct Pixel {
     unsigned char r, g, b;
@@ -23,4 +23,4 @@ void pscreen_print(PixelScreen screen);
 
 int pscreen_putpixel(PixelScreen screen, int x, int y, Pixel pixel);
 
-#endif // PIXELSCREEN_H_
+#endif // PIXELSCREEN_H

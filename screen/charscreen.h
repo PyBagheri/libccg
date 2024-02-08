@@ -1,5 +1,5 @@
-#ifndef CHARSCREEN_H_
-#define CHARSCREEN_H_
+#ifndef CHARSCREEN_H
+#define CHARSCREEN_H
 
 typedef char Character;
 
@@ -18,4 +18,4 @@ void cscreen_print(CharScreen screen);
 
 int cscreen_putchar(CharScreen screen, int x, int y, Character c);
 
-#endif // CHARSCREEN_H_
+#endif // CHARSCREEN_H

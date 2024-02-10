@@ -1,6 +1,6 @@
 #include <cvector/cvector.h>
 #include <screen/charscreen.h>
-#include <drawing/drawing.h>
+#include <drawing/general.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

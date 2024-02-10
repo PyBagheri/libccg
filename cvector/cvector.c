@@ -39,7 +39,7 @@ Vector v3d(num x, num y, num z) {
     return v;
 }
 
-Vector v_from_array(unsigned int dim, num* arr) {
+Vector v_from_array(unsigned int dim, num *arr) {
     Vector v = vNd(dim);
     for (int i = 0; i < dim; i++) {
         v.vals[i] = arr[i];
@@ -51,7 +51,7 @@ Vector v_from_array(unsigned int dim, num* arr) {
 // This will just use the pointer to the arr
 // as the 'vals' array for the vector. 'na'
 // stands for 'no allocate'.
-Vector v_from_array_na(unsigned int dim, num* arr) {
+Vector v_from_array_na(unsigned int dim, num *arr) {
     Vector v = vNd_na(dim);
     v.vals = arr;
 

@@ -8,7 +8,7 @@ typedef struct Pixel {
 typedef struct PixelScreen {
     int height;
     int width;
-    Pixel* pixels;
+    Pixel *pixels;
 } PixelScreen;
 
 
@@ -18,7 +18,7 @@ void pscreen_dealloc(PixelScreen screen);
 
 void pscreen_fill(PixelScreen screen, Pixel empty_fill_pixel);
 
-Pixel* pscreen_trender(PixelScreen screen);
+Pixel *pscreen_trender(PixelScreen screen);
 void pscreen_print(PixelScreen screen);
 
 int pscreen_putpixel(PixelScreen screen, int x, int y, Pixel pixel);

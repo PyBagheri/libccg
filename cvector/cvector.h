@@ -5,7 +5,7 @@ typedef double num;
 
 typedef struct Vector {
     unsigned int dim;
-    num* vals;
+    num *vals;
 } Vector;
 
 Vector vNd(unsigned int dim);
@@ -19,12 +19,12 @@ Vector vNd_na(unsigned int dim);
 Vector v2d(num x, num y);
 Vector v3d(num x, num y, num z);
 
-Vector v_from_array(unsigned int dim, num* arr);
+Vector v_from_array(unsigned int dim, num *arr);
 
 // This will just use the pointer to the arr
 // as the 'vals' array for the vector. 'na'
 // stands for 'no allocate'.
-Vector v_from_array_na(unsigned int dim, num* arr);
+Vector v_from_array_na(unsigned int dim, num *arr);
 
 void v_dealloc(Vector v);
 

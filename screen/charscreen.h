@@ -9,13 +9,13 @@ typedef struct CharScreen {
     char *screen_chars;
 } CharScreen;
 
-CharScreen cscreen_init(int width, int height, Character empty_fill_char);
+CharScreen cs_init(int width, int height, Character empty_fill_char);
 
-void cscreen_dealloc(CharScreen charscreen);
+void cs_dealloc(CharScreen charscreen);
 
-Character *cscreen_trender(CharScreen screen);
-void cscreen_print(CharScreen screen);
+Character *cs_trender(CharScreen screen);
+void cs_print(CharScreen screen);
 
-int cscreen_putchar(CharScreen screen, int x, int y, Character c);
+int cs_putchar(CharScreen screen, int x, int y, Character c);
 
 #endif // CHARSCREEN_H

@@ -23,7 +23,7 @@ CharScreen screen;
 
 int main(void) {
     // prepare the screen
-    screen = cscreen_init(WIDTH, HEIGHT, EMPTY_FILL_CHAR);
+    screen = cs_init(WIDTH, HEIGHT, EMPTY_FILL_CHAR);
 
     Vector camera_plane_normal = v_unitize(v3d(-5, 0, -5));
     Vector camera_loc = v3d(5, 0, 5);
@@ -31,10 +31,10 @@ int main(void) {
 
     square(2, camera_plane_normal, camera_loc, camera_xy_angle);
 
-    cscreen_print(screen);
+    cs_print(screen);
 
     // free the char 2d array
-    cscreen_dealloc(screen);
+    cs_dealloc(screen);
 
     return 0;
 }

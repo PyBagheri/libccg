@@ -12,15 +12,15 @@ typedef struct PixelScreen {
 } PixelScreen;
 
 
-PixelScreen pscreen_init(int width, int height, Pixel empty_fill_pixel);
+PixelScreen ps_init(int width, int height, Pixel empty_fill_pixel);
 
-void pscreen_dealloc(PixelScreen screen);
+void ps_dealloc(PixelScreen screen);
 
-void pscreen_fill(PixelScreen screen, Pixel empty_fill_pixel);
+void ps_fill(PixelScreen screen, Pixel empty_fill_pixel);
 
-Pixel *pscreen_trender(PixelScreen screen);
-void pscreen_print(PixelScreen screen);
+Pixel *ps_trender(PixelScreen screen);
+void ps_print(PixelScreen screen);
 
-int pscreen_putpixel(PixelScreen screen, int x, int y, Pixel pixel);
+int ps_putpixel(PixelScreen screen, int x, int y, Pixel pixel);
 
 #endif // PIXELSCREEN_H

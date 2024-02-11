@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-CharScreen cscreen_init(int width, int height, Character empty_fill_char) {
+CharScreen cs_init(int width, int height, Character empty_fill_char) {
     char (*screen_chars)[width] = malloc(sizeof(char) * width * height);
 
     for (int j = 0; j < height; j++) {
@@ -18,12 +18,12 @@ CharScreen cscreen_init(int width, int height, Character empty_fill_char) {
 }
 
 
-void cscreen_dealloc(CharScreen screen) {
+void cs_dealloc(CharScreen screen) {
     free((char (*)[screen.width])screen.screen_chars);
 }
 
 
-void cscreen_print(CharScreen screen) {
+void cs_print(CharScreen screen) {
     // explicit casting to suppress warnings
     char (*s)[screen.width] = (char (*)[screen.width])screen.screen_chars;
 
@@ -42,7 +42,7 @@ void cscreen_print(CharScreen screen) {
 // }
 
 
-int cscreen_putchar(CharScreen screen, int x, int y, char c) {
+int cs_putchar(CharScreen screen, int x, int y, char c) {
     char (*s)[screen.width] = (char (*)[screen.width])screen.screen_chars;
 
     s[screen.height / 2 - y][screen.width / 2 + x] = c;

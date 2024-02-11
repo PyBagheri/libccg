@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 
-PixelScreen pscreen_init(int width, int height, Pixel empty_fill_pixel) {
+PixelScreen ps_init(int width, int height, Pixel empty_fill_pixel) {
     Pixel (*pixels)[width] = malloc(sizeof(Pixel) * width * height);
 
     for (int j = 0; j < height; j++) {
@@ -18,12 +18,12 @@ PixelScreen pscreen_init(int width, int height, Pixel empty_fill_pixel) {
 }
 
 
-void pscreen_dealloc(PixelScreen screen) {
+void ps_dealloc(PixelScreen screen) {
     free((Pixel (*)[screen.width])screen.pixels);
 }
 
 
-void pscreen_fill(PixelScreen screen, Pixel empty_fill_pixel) {
+void ps_fill(PixelScreen screen, Pixel empty_fill_pixel) {
     Pixel (*pixels)[screen.width] = (Pixel (*)[screen.width])screen.pixels;
 
     for (int j = 0; j < screen.height; j++) {
@@ -39,7 +39,7 @@ void print_terminal_char(Pixel upper, Pixel lower) {
 }
 
 
-void pscreen_print(PixelScreen screen) {
+void ps_print(PixelScreen screen) {
     // explicit casting to suppress warnings
     Pixel (*pixels)[screen.width] = (Pixel (*)[screen.width])screen.pixels;
 
@@ -62,7 +62,7 @@ void pscreen_print(PixelScreen screen) {
 // }
 
 
-int pscreen_putpixel(PixelScreen screen, int x, int y, Pixel pixel) {
+int ps_putpixel(PixelScreen screen, int x, int y, Pixel pixel) {
     Pixel (*pixels)[screen.width] = (Pixel (*)[screen.width])screen.pixels;
 
     pixels[screen.height / 2 - y][screen.width / 2 + x] = pixel;

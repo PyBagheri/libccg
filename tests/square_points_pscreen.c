@@ -28,7 +28,7 @@ PixelScreen screen;
 int main(void) {
     // prepare the screen
     Pixel empty_fill_pixel = {.r = EMPTY_FILL_R, .g = EMPTY_FILL_G, .b = EMPTY_FILL_B};
-    screen = pscreen_init(WIDTH, HEIGHT, empty_fill_pixel);
+    screen = ps_init(WIDTH, HEIGHT, empty_fill_pixel);
 
     Vector camera_plane_normal = v_unitize(v3d(-5, 0, -2));
     Vector camera_loc = v3d(5, 0, 1.5);
@@ -36,10 +36,10 @@ int main(void) {
 
     square(3, camera_plane_normal, camera_loc, camera_xy_angle);
 
-    pscreen_print(screen);
+    ps_print(screen);
 
     // free the char 2d array
-    pscreen_dealloc(screen);
+    ps_dealloc(screen);
 
     return 0;
 }
@@ -61,9 +61,9 @@ void square(double side, Vector camera_plane_normal, Vector camera_loc, double c
     // to show the center of the 'screen'.
     // pscreen_putpixel(screen, 0, 0, fill_char);
 
-    pscreen_putpixel(screen, v1.vals[0], v1.vals[1], fill_char);
-    pscreen_putpixel(screen, v2.vals[0], v2.vals[1], fill_char);
-    pscreen_putpixel(screen, v3.vals[0], v3.vals[1], fill_char);
-    pscreen_putpixel(screen, v4.vals[0], v4.vals[1], fill_char);
+    ps_putpixel(screen, v1.vals[0], v1.vals[1], fill_char);
+    ps_putpixel(screen, v2.vals[0], v2.vals[1], fill_char);
+    ps_putpixel(screen, v3.vals[0], v3.vals[1], fill_char);
+    ps_putpixel(screen, v4.vals[0], v4.vals[1], fill_char);
 }
 
